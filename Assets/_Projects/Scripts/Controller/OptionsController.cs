@@ -1,21 +1,25 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsController : MonoBehaviour
 {
-    [Header("Menus References")]
+    [Header("Dependencies")]
     [SerializeField] private UIPanel _mainMenu;
     [SerializeField] private UIPanel _optionsMenu;
     [SerializeField] private UIPanel _audioMenu;
-
+    [SerializeField] private UIPanel _videoMenu;
     [SerializeField] private UINavigator _uiNavigator;
 
-    [Header("Buttons References")]
+    [Header("UI Navigation")]
     [SerializeField] private Button _audioBtn;
     [SerializeField] private Button _videoBtn;
     [SerializeField] private Button _languageBtn;
     [SerializeField] private Button _doneBtn;
+
+    [Header("Data Settings")]
+    [SerializeField] private GameSettingsSO _gameSettings;
 
     void Start()
     {
@@ -40,7 +44,7 @@ public class OptionsController : MonoBehaviour
 
     private void OnVideoClicked()
     {
-        Debug.Log("Video menu opened...");
+        _uiNavigator.OpenPanel(_videoMenu);
     }
 
     private void OnLanguageClicked()
@@ -50,6 +54,7 @@ public class OptionsController : MonoBehaviour
 
     private void OnDoneClicked()
     {
+        SettingsIO.Save(_gameSettings);
         _uiNavigator.GoBack();
     }
 }

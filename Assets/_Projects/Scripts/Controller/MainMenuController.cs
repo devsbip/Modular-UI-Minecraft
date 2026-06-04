@@ -3,16 +3,23 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [Header("Menus References")]
+    [Header("Dependencies")]
     [SerializeField] private UIPanel _mainMenu;
     [SerializeField] private UIPanel _optionsMenu;
-
     [SerializeField] private UINavigator _uiNavigator;
 
-    [Header("Buttons References")]
+    [Header("UI Navigation")]
     [SerializeField] private Button _playBtn;
     [SerializeField] private Button _optionsBtn;
     [SerializeField] private Button _quitBtn;
+
+    [Header("Data")]
+    [SerializeField] private GameSettingsSO _gameSettings;
+
+    void Awake()
+    {
+        SettingsIO.Load(_gameSettings);
+    }
 
     void Start()
     {

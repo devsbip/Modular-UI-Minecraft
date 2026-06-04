@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5a3636208080547b798503336947fc, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::GameSettingsSO
-  _masterVolume: 1
+  _masterVolume: 0.5
+  _musicVolume: 0.5
+  _jukeboxVolume: 0.5
+  _weatherVolume: 0.5
+  _blocksVolume: 0.5
+  _hostileVolume: 0.5
+  _friendlyVolume: 0.5
+  _playersVolume: 0
+  _ambientVolume: 0.5
+  _voiceVolume: 0
   _graphicsQuality: 2
+  _guiScaleValue: 1
+  _fovValue: 70

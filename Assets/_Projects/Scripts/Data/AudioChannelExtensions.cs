@@ -12,8 +12,8 @@ public static class AudioChannelExtensions
                 return "Friendly Creatures"; 
             case AudioChannel.Ambient:
                 return "Ambient/Environment";
-            case AudioChannel.Voice: 
-                return "Voice/Speech"; 
+            case AudioChannel.Narrator: 
+                return "Narrator/Speech"; 
             
             default:
                 return channel.ToString();

@@ -9,5 +9,6 @@ public enum AudioChannel
     Friendly,
     Players,
     Ambient,
-    Voice
+    Narrator,
+    UI
 }
