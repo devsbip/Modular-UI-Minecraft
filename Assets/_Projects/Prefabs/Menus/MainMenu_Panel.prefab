@@ -85,8 +85,8 @@ GameObject:
   m_Component:
   - component: {fileID: 947037813669229215}
   - component: {fileID: 944938852292948186}
-  - component: {fileID: 1482997012046281141}
   - component: {fileID: 5276672783645774184}
+  - component: {fileID: 1482997012046281141}
   m_Layer: 5
   m_Name: MainMenu_Panel
   m_TagString: Untagged
@@ -130,22 +130,10 @@ MonoBehaviour:
   _mainMenu: {fileID: 5276672783645774184}
   _optionsMenu: {fileID: 0}
   _uiNavigator: {fileID: 0}
-  _playBtn: {fileID: 690246528852278695}
-  _optionsBtn: {fileID: 4589549644858574473}
-  _quitBtn: {fileID: 369609849716923153}
+  _playButton: {fileID: 0}
+  _optionsButton: {fileID: 0}
+  _quitButton: {fileID: 0}
   _gameSettings: {fileID: 11400000, guid: d053f7e09ac848c45886da1844fa389e, type: 2}
---- !u!225 &1482997012046281141
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792717169618273998}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &5276672783645774184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +146,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dedd5dce49b36948b8a362a2b1a8fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  _canvasGroup: {fileID: 0}
+--- !u!225 &1482997012046281141
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792717169618273998}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2916696942368846493
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,17 +697,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe3298724c48eb549b0b0fa950af3aa9, type: 3}
---- !u!114 &690246528852278695 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1144426326256745788, guid: fe3298724c48eb549b0b0fa950af3aa9, type: 3}
-  m_PrefabInstance: {fileID: 465539965217718427}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &7346796890553536786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7170010954018558345, guid: fe3298724c48eb549b0b0fa950af3aa9, type: 3}
@@ -1129,17 +1119,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
---- !u!114 &4589549644858574473 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7717917292343462057, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
-  m_PrefabInstance: {fileID: 6100926101942095392}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &8485263291984882566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2408126138896442790, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
@@ -1363,17 +1342,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
---- !u!114 &369609849716923153 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7717917292343462057, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
-  m_PrefabInstance: {fileID: 7942822322961306552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &5715616751096935966 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2408126138896442790, guid: 38e973d3646dcf64b85907f92b8860cb, type: 3}
