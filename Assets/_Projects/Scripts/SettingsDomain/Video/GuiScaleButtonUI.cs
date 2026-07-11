@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUIScaleButtonUI : MonoBehaviour
+public class GuiScaleButtonUI : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private CanvasScaler _canvasScaler;
@@ -18,6 +18,8 @@ public class GUIScaleButtonUI : MonoBehaviour
     [SerializeField] private float _minSafeScreenHeight = 240f;
 
     [Header("Data")]
+    [SerializeField] private LocalizationKey _localizationKey;
+    [SerializeField] private LocalizationTableSO _localizationTable;
     [SerializeField] private GameSettingsSO _gameSettings;
 
     [Header("Internal State")]
@@ -31,6 +33,7 @@ public class GUIScaleButtonUI : MonoBehaviour
         _lastScreenHeight = Screen.height;
 
         _scaleButton.onClick.AddListener(CycleGuiScale);
+        _gameSettings.OnLanguageChanged += OnLanguageChanged;
     }
 
     private void Update()
@@ -45,6 +48,7 @@ public class GUIScaleButtonUI : MonoBehaviour
     private void OnDestroy()
     {
         _scaleButton.onClick.RemoveListener(CycleGuiScale);
+        _gameSettings.OnLanguageChanged -= OnLanguageChanged;
     }
 
     private void CycleGuiScale()
@@ -80,9 +84,19 @@ public class GUIScaleButtonUI : MonoBehaviour
         _gameSettings.SetGuiScale(_currentScaleFactor);
     }
 
+    private void OnLanguageChanged(GameLanguage newLanguage)
+    {
+        UpdateVisuals();
+    }
+
     private void UpdateVisuals()
     {
-        string scaleText = $"GUI Scale: {_currentScaleFactor}";
+        if (_localizationTable == null || _gameSettings == null || _localizationKey == LocalizationKey.None) return;
+
+        GameLanguage currentLang = _gameSettings.CurrentLanguage;
+
+        string translatedPrefix = _localizationTable.GetText(_localizationKey, currentLang);
+        string scaleText = $"{translatedPrefix}: {_currentScaleFactor}";
 
         if (_scaleLabel != null) _scaleLabel.text = scaleText;
         if (_scaleShadowLabel != null) _scaleShadowLabel.text = scaleText;

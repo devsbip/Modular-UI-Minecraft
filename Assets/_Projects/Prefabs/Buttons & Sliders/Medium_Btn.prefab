@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3790741184182866633}
   - component: {fileID: 7717917292343462057}
   - component: {fileID: 6719923950838144877}
+  - component: {fileID: -386810152191137445}
   m_Layer: 5
   m_Name: Medium_Btn
   m_TagString: Untagged
@@ -280,6 +281,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &-386810152191137445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670732887706965571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7318b7c5115458148b963d41678d1f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISoundFeedback
 --- !u!1 &7768467302377137716
 GameObject:
   m_ObjectHideFlags: 0

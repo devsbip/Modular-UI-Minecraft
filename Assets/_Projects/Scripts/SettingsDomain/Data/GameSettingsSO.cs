@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewGameSettings", menuName = "Data/Game Settings")]
@@ -24,9 +25,19 @@ public class GameSettingsSO : ScriptableObject
     [SerializeField] private bool _isExclusiveFullscreen;
     [SerializeField] private int _resolutionIndex;
     [SerializeField] private bool _isVsyncOn;
+    [SerializeField] private int _maxFramerate;
+    [SerializeField] private BackgroundFpsMode _backgroundFpsMode;
 
     [Header("Gameplay Data")]
     [SerializeField] private int _fovValue = 70;
+
+    [Header("Localization")]
+    [SerializeField] private GameLanguage _currentLanguage = GameLanguage.English;
+
+    
+    // Events
+    public event Action<AudioChannel, float> OnVolumeChanged;
+    public event Action<GameLanguage> OnLanguageChanged;
 
     // --- Getters ---
 
@@ -50,7 +61,12 @@ public class GameSettingsSO : ScriptableObject
     public bool IsExclusiveFullscreen => _isExclusiveFullscreen;
     public int ResolutionIndex => _resolutionIndex;
     public bool IsVsyncOn => _isVsyncOn;
+    public int MaxFramerate => _maxFramerate;
     public int FOV => _fovValue;
+    public BackgroundFpsMode BackgroundMode => _backgroundFpsMode;
+
+    // Localization
+    public GameLanguage CurrentLanguage => _currentLanguage;
 
     // --- Setters ---
     public void SetFOV(float fovValue)
@@ -81,6 +97,22 @@ public class GameSettingsSO : ScriptableObject
     public void SetVsync(bool isVsyncOn)
     {
         _isVsyncOn = isVsyncOn;
+    }
+
+    public void SetFramerate(int framerateValue)
+    {
+        _maxFramerate = framerateValue;
+    }
+
+    public void SetBackgroundFpsMode(BackgroundFpsMode backgroundFpsMode)
+    {
+        _backgroundFpsMode = backgroundFpsMode;
+    }
+
+    public void SetLanguage(GameLanguage language)
+    {
+        _currentLanguage = language;
+        OnLanguageChanged?.Invoke(_currentLanguage);
     }
 
     public float GetVolume(AudioChannel channel)
@@ -118,5 +150,7 @@ public class GameSettingsSO : ScriptableObject
             case AudioChannel.Narrator: _narratorVolume = volumeValue; break; 
             case AudioChannel.UI: _uiVolume = volumeValue; break; 
         }
+
+        OnVolumeChanged?.Invoke(channel, volumeValue);
     }
 }

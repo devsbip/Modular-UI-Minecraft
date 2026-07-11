@@ -11,6 +11,8 @@ public class ResolutionSelectorUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _resolutionShadowLabel;
 
     [Header("Data")]
+    [SerializeField] private LocalizationKey _localizationKey;
+    [SerializeField] private LocalizationTableSO _localizationTable;
     [SerializeField] private GameSettingsSO _gameSettings;
 
     [Header("Internal State")]
@@ -22,6 +24,8 @@ public class ResolutionSelectorUI : MonoBehaviour
         Resolution[] nativeResolutions = Screen.resolutions;
         System.Array.Reverse(nativeResolutions);
 
+        Resolution desktopResolution = Screen.currentResolution;
+
         foreach (Resolution currentRes in nativeResolutions)
         {
             float aspectRatio = (float)currentRes.width / (float)currentRes.height;
@@ -30,6 +34,16 @@ public class ResolutionSelectorUI : MonoBehaviour
 
             if (Mathf.Abs(aspectRatio - targetAspectRatio) <= margin)
             {
+                bool isSameWidth = currentRes.width == desktopResolution.width;
+                bool isSameHeight = currentRes.height == desktopResolution.height;
+                
+                bool isSameRefreshRate = Mathf.RoundToInt((float)currentRes.refreshRateRatio.value) == Mathf.RoundToInt((float)desktopResolution.refreshRateRatio.value);
+
+                if (isSameWidth && isSameHeight && isSameRefreshRate)
+                {
+                    continue; 
+                }
+
                 _filteredResolutions.Add(currentRes);
             }
         }
@@ -37,13 +51,16 @@ public class ResolutionSelectorUI : MonoBehaviour
         _resolutionSlider.maxValue = _filteredResolutions.Count;
         _resolutionSlider.value = _gameSettings.ResolutionIndex;
 
+        _gameSettings.OnLanguageChanged += OnLanguageChanged;
+
         PreviewResolution(_resolutionSlider.value);
         _resolutionSlider.onValueChanged.AddListener(PreviewResolution);
     }
 
-    private void ODestroy()
+    private void OnDestroy()
     {
         _resolutionSlider.onValueChanged.RemoveListener(PreviewResolution);
+        _gameSettings.OnLanguageChanged -= OnLanguageChanged;
     }
 
     private void PreviewResolution(float sliderValue)
@@ -52,27 +69,45 @@ public class ResolutionSelectorUI : MonoBehaviour
         if (sliderValue == 0)
         {
             _pendingResolution = Screen.currentResolution;
-
-            _resolutionLabel.text = "Fullscreen Resolution: Current";
-            _resolutionShadowLabel.text = "Fullscreen Resolution: Current";
         }
         else
         {
             int index = (int)sliderValue - 1;
             _pendingResolution = _filteredResolutions[index];
-
-            int width = _pendingResolution.width;
-            int height = _pendingResolution.height;
-            int heartz = Mathf.RoundToInt((float)_pendingResolution.refreshRateRatio.value);
-
-            UpdateVisuals($"Fullscreen Resolution: {width}x{height} @ {heartz}hz");
         }
+
+        UpdateVisuals();
     }
 
-    private void UpdateVisuals(string resolutionText)
+    private void OnLanguageChanged(GameLanguage newLanguage)
     {
-        if (_resolutionLabel != null) _resolutionLabel.text = resolutionText;
-        if (_resolutionShadowLabel != null) _resolutionShadowLabel.text = resolutionText;
+        UpdateVisuals();
+    }
+
+    private void UpdateVisuals()
+    {
+        if (_localizationTable == null || _gameSettings == null || _localizationKey == LocalizationKey.None) return;
+
+        GameLanguage currentLang = _gameSettings.CurrentLanguage;
+
+        string translatedPrefix = _localizationTable.GetText(_localizationKey, currentLang);
+        string statusText;
+
+        if (_resolutionSlider.value == 0)
+        {
+            statusText = currentLang == GameLanguage.Portuguese ? "Atual" : "Current";
+        }else
+        {
+            int width = _pendingResolution.width;
+            int height = _pendingResolution.height;
+            int hertz = Mathf.RoundToInt((float)_pendingResolution.refreshRateRatio.value);
+
+            statusText = $"{width}x{height} @ {hertz}hz";
+        }
+
+        string displayText = $"{translatedPrefix}: {statusText}";
+        if (_resolutionLabel != null) _resolutionLabel.text = displayText;
+        if (_resolutionShadowLabel != null) _resolutionShadowLabel.text = displayText;
     }
 
     public void ApplyResolution()

@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4083d6436c0da054899898028bfe1da1, type: 3}
+  m_Name: LocalizationTable
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizationTableSO
+  _entries:
+  - Key: 68
+    English: Done
+    Portuguese: "Conclu\xEDdo"
+  - Key: 1
+    English: Singleplayer
+    Portuguese: Um Jogador
+  - Key: 2
+    English: Multiplayer
+    Portuguese: Multijogador
+  - Key: 3
+    English: Options
+    Portuguese: "Op\xE7\xF5es"
+  - Key: 4
+    English: Quit Game
+    Portuguese: Sair do Jogo
+  - Key: 5
+    English: FOV
+    Portuguese: Campo Visual
+  - Key: 6
+    English: Skin Customization...
+    Portuguese: "Personaliza\xE7\xE3o da skin..."
+  - Key: 7
+    English: Music & Sounds...
+    Portuguese: "M\xFAsica e sons..."
+  - Key: 8
+    English: Video Settings...
+    Portuguese: "Gr\xE1ficos..."
+  - Key: 9
+    English: Controls...
+    Portuguese: Controles...
+  - Key: 10
+    English: Language...
+    Portuguese: Idioma...
+  - Key: 11
+    English: Chat Settings...
+    Portuguese: Chat...
+  - Key: 12
+    English: Resource Packs...
+    Portuguese: Pacote de recursos...
+  - Key: 13
+    English: Accessibility Settings...
+    Portuguese: Acessibilidade...
+  - Key: 14
+    English: Telemetry Data...
+    Portuguese: Telemetria
+  - Key: 15
+    English: Credits & Attribution...
+    Portuguese: "Cr\xE9ditos e atribui\xE7\xF5es..."
+  - Key: 16
+    English: Master Volume
+    Portuguese: Volume-mestre
+  - Key: 17
+    English: Music
+    Portuguese: "M\xFAsica"
+  - Key: 18
+    English: Jukebox/Note Blocks
+    Portuguese: Blocos musicais
+  - Key: 19
+    English: Weather
+    Portuguese: Tempo
+  - Key: 20
+    English: Blocks
+    Portuguese: Blocos
+  - Key: 21
+    English: Hostile Mobs
+    Portuguese: Criaturas hostis
+  - Key: 22
+    English: Friendly Mobs
+    Portuguese: Criaturas inofensivas
+  - Key: 23
+    English: Players
+    Portuguese: Jogadores
+  - Key: 24
+    English: Ambient/Environment
+    Portuguese: Ambiente
+  - Key: 25
+    English: Narrator/Voice
+    Portuguese: "Voz/Di\xE1logos"
+  - Key: 26
+    English: UI
+    Portuguese: Interface
+  - Key: 27
+    English: 'Device: System Default'
+    Portuguese: "\xC1udio: Padr\xE3o (sistema)"
+  - Key: 28
+    English: Closed Captions
+    Portuguese: Legendas ocultas
+  - Key: 29
+    English: Directional Audio
+    Portuguese: "\xC1udio posicional"
+  - Key: 30
+    English: 'Music Frequency: Default'
+    Portuguese: "Frequ\xEAncia de m\xFAsicas: Padr\xE3o"
+  - Key: 31
+    English: 'Music Toast: Never'
+    Portuguese: 'Faixa musical: Nunca'
+  - Key: 32
+    English: Fullscreen Resolution
+    Portuguese: "Resolu\xE7\xE3o em tela cheia"
+  - Key: 33
+    English: Max Framerate
+    Portuguese: Limite de FPS
+  - Key: 34
+    English: Vsync
+    Portuguese: "Sincroniza\xE7\xE3o Vertical"
+  - Key: 35
+    English: Reduce FPS when
+    Portuguese: Reduzir FPS ao
+  - Key: 36
+    English: GUI Scale
+    Portuguese: Tamanho da interface
+  - Key: 37
+    English: Fullscreen
+    Portuguese: Tela cheia
+  - Key: 38
+    English: Exclusive Fullscreen
+    Portuguese: Tela cheia exclusiva
+  - Key: 39
+    English: 'Brightness: Bright'
+    Portuguese: 'Brilho: Claro'
+  - Key: 40
+    English: 'Preset: Custom'
+    Portuguese: "Predefini\xE7\xE3o: Personalizada"
+  - Key: 41
+    English: 'Biome Blend: 5x5 (Normal)'
+    Portuguese: "Transi\xE7\xE3o de biomas: 5x5 (normal)"
+  - Key: 42
+    English: 'Render Distance: 12 Chunks'
+    Portuguese: 'Alcance Visual: 12 chunks'
+  - Key: 43
+    English: 'Chunk Builder: Threaded'
+    Portuguese: 'Gerar chunks: Em paralelo'
+  - Key: 44
+    English: 'Simulation Distance: 12 Chunks'
+    Portuguese: "Simula\xE7\xE3o: 12 Chunks"
+  - Key: 45
+    English: Smooth Lighting
+    Portuguese: "Ilumina\xE7\xE3o suave "
+  - Key: 46
+    English: 'Clouds: Fancy'
+    Portuguese: 'Nuvens: Detalhadas'
+  - Key: 47
+    English: 'Particles: All'
+    Portuguese: "Part\xEDculas: Todas"
+  - Key: 48
+    English: 'Mipmap Levels: 4'
+    Portuguese: "N\xEDveis de mipmap: 4"
+  - Key: 49
+    English: Entity Shadow
+    Portuguese: Sombras das entidades
+  - Key: 50
+    English: 'Entity Distance: 100%'
+    Portuguese: "Dist\xE2ncia das entidades: 100%"
+  - Key: 51
+    English: 'Menu Background Blur: 1'
+    Portuguese: 'Desfoque de fundo do menu: 1'
+  - Key: 52
+    English: 'Cloud Distance: 128 Chunks'
+    Portuguese: "Dist\xE2ncia das nuvens: 128 chunks"
+  - Key: 53
+    English: See-Through Leaves
+    Portuguese: Folhas transparentes
+  - Key: 54
+    English: Improved Transparency
+    Portuguese: "Transpar\xEAncia aprimorada"
+  - Key: 55
+    English: 'Texture Filtering: SAGR'
+    Portuguese: 'Filtragem de texturas: SAGR '
+  - Key: 56
+    English: 'Anisotropic Filtering: 4x'
+    Portuguese: "Filtragem anisotr\xF3pica: 4x"
+  - Key: 57
+    English: 'Weather Effect Radius: 10 Blocks'
+    Portuguese: "Raio do efeito meteorol\xF3gico: 10 blocos"
+  - Key: 58
+    English: Autosave Indicator
+    Portuguese: Indicador de salvamento
+  - Key: 59
+    English: Show Vignette
+    Portuguese: Mostrar vinheta
+  - Key: 60
+    English: 'Attack Indicator: Crosshair'
+    Portuguese: 'Indicador de ataque: Mira'
+  - Key: 61
+    English: 'Chunk Fade: 0.75 second(s)'
+    Portuguese: "Transi\xE7\xE3o dos chunks: 0.75s"
+  - Key: 62
+    English: Video Settings
+    Portuguese: "Ajustes gr\xE1ficos"
+  - Key: 63
+    English: Display
+    Portuguese: "V\xEDdeo"
+  - Key: 64
+    English: Quality & Performance
+    Portuguese: Qualidade e desempenho
+  - Key: 65
+    English: Preferences
+    Portuguese: "Prefer\xEAncias"
+  - Key: 66
+    English: Music & Sound Options
+    Portuguese: "Op\xE7\xF5es de m\xFAsica e sons"
+  - Key: 67
+    English: Options
+    Portuguese: "Op\xE7\xF5es"

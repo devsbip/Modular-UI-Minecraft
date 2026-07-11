@@ -2,49 +2,45 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VsyncToggleUI : MonoBehaviour
+public class BackgroundFpsButtonUI : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private Button _vsyncButton;
-    [SerializeField] private TextMeshProUGUI _vsyncLabel;
-    [SerializeField] private TextMeshProUGUI _vsyncShadowLabel;
+    [SerializeField] private Button _fpsButton;
+    [SerializeField] private TextMeshProUGUI _fpsLabel;
+    [SerializeField] private TextMeshProUGUI _fpsShadowLabel;
 
     [Header("Data")]
     [SerializeField] private LocalizationKey _localizationKey;
     [SerializeField] private LocalizationTableSO _localizationTable;
     [SerializeField] private GameSettingsSO _gameSettings;
 
-    [Header("Internal State")]
-    private bool _isVsyncEnabled;
+    private BackgroundFpsMode _currentMode;
 
     private void Start()
     {
-        _isVsyncEnabled = _gameSettings.IsVsyncOn;
+        _currentMode = _gameSettings.BackgroundMode;
         _gameSettings.OnLanguageChanged += OnLanguageChanged;
 
         UpdateVisuals();
-
-        QualitySettings.vSyncCount = _isVsyncEnabled ? 1 : 0;
-        _vsyncButton.onClick.AddListener(ToggleVsync);
+        _fpsButton.onClick.AddListener(CycleBackgroundMode);
     }
 
     private void OnDestroy()
     {
-        _vsyncButton.onClick.RemoveListener(ToggleVsync);
+        _fpsButton.onClick.RemoveListener(CycleBackgroundMode);
         _gameSettings.OnLanguageChanged -= OnLanguageChanged;
+    }
+
+    private void CycleBackgroundMode()
+    {
+        _currentMode = _currentMode == BackgroundFpsMode.Minimized ? BackgroundFpsMode.Afk : BackgroundFpsMode.Minimized;
+
+        _gameSettings.SetBackgroundFpsMode(_currentMode);
+        UpdateVisuals();
     }
 
     private void OnLanguageChanged(GameLanguage newLanguage)
     {
-        UpdateVisuals();
-    }
-
-    private void ToggleVsync()
-    {
-        _isVsyncEnabled = !_isVsyncEnabled;
-        QualitySettings.vSyncCount = _isVsyncEnabled ? 1 : 0;
-
-        _gameSettings.SetVsync(_isVsyncEnabled);
         UpdateVisuals();
     }
 
@@ -55,20 +51,20 @@ public class VsyncToggleUI : MonoBehaviour
         GameLanguage currentLang = _gameSettings.CurrentLanguage;
 
         string translatedPrefix = _localizationTable.GetText(_localizationKey, currentLang);
-
         string statusText = "";
+        
         if (currentLang == GameLanguage.English)
         {
-            statusText = _isVsyncEnabled ? "ON" : "OFF";
+            statusText = _currentMode == BackgroundFpsMode.Minimized ? "Minimized" : "AFK";
         }
         else if (currentLang == GameLanguage.Portuguese)
         {
-            statusText = _isVsyncEnabled ? "Sim" : "Não";
+            statusText = _currentMode == BackgroundFpsMode.Minimized ? "Minimizar" : "Ausentar-se";
         }
 
         string displayText = $"{translatedPrefix}: {statusText}";
 
-        if (_vsyncLabel != null) _vsyncLabel.text = displayText;
-        if (_vsyncShadowLabel != null) _vsyncShadowLabel.text = displayText;
+        if (_fpsLabel != null) _fpsLabel.text = displayText;
+        if (_fpsShadowLabel != null) _fpsShadowLabel.text = displayText;
     }
 }

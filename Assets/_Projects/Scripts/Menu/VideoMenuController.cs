@@ -5,8 +5,9 @@ public class VideoMenuController : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private UINavigator _uiNavigator;
-    [SerializeField] private ResolutionSelectorUI _resolutionController;
-
+    [SerializeField] private ResolutionSelectorUI _resolutionSelector;
+    [SerializeField] private FramerateSliderUI _framerateSliderUI;
+ 
     [Header("UI Elements")]
     [SerializeField] private Button _doneButton;
     
@@ -25,7 +26,8 @@ public class VideoMenuController : MonoBehaviour
 
     private void SaveAndExitMenu()
     {
-        _resolutionController.ApplyResolution();
+        _resolutionSelector.ApplyResolution();
+        _framerateSliderUI.ConfirmFramerateSettings();
         
         SettingsIO.Save(_gameSettings);
         _uiNavigator.GoBack();

@@ -10,6 +10,8 @@ public class FullscreenToggleUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _fullscreenShadowLabel;
 
     [Header("Data")]
+    [SerializeField] private LocalizationKey _localizationKey;
+    [SerializeField] private LocalizationTableSO _localizationTable;
     [SerializeField] private GameSettingsSO _gameSettings;
 
     [Header("Internal State")]
@@ -17,7 +19,8 @@ public class FullscreenToggleUI : MonoBehaviour
 
     private void Start()
     {
-        if (_gameSettings != null) _isFullscreen = _gameSettings.IsFullscreen;
+        _isFullscreen = _gameSettings.IsFullscreen;
+        _gameSettings.OnLanguageChanged += OnLanguageChanged;
 
         ApplyFullscreenState();
         UpdateVisuals();
@@ -28,6 +31,7 @@ public class FullscreenToggleUI : MonoBehaviour
     private void OnDestroy()
     {
         _fullscreenButton.onClick.RemoveListener(ToggleFullscreen);
+        _gameSettings.OnLanguageChanged -= OnLanguageChanged;
     }
 
     private void ToggleFullscreen()
@@ -53,9 +57,30 @@ public class FullscreenToggleUI : MonoBehaviour
         }
     }
 
+    private void OnLanguageChanged(GameLanguage newLanguage)
+    {
+        UpdateVisuals();
+    }
+
     private void UpdateVisuals()
     {
-        string displayText = _isFullscreen ? "Fullscreen: ON" : "Fullscreen: OFF";
+        if (_localizationTable == null || _gameSettings == null || _localizationKey == LocalizationKey.None) return;
+
+        GameLanguage currentLang = _gameSettings.CurrentLanguage;
+
+        string translatedPrefix = _localizationTable.GetText(_localizationKey, currentLang);
+        string statusText = "";
+
+        if (currentLang == GameLanguage.English)
+        {
+            statusText = _isFullscreen ? "ON" : "OFF";
+        }
+        else if (currentLang == GameLanguage.Portuguese)
+        {
+            statusText = _isFullscreen ? "Sim" : "Não";
+        }
+
+        string displayText = $"{translatedPrefix}: {statusText}";
 
         if (_fullscreenLabel != null) _fullscreenLabel.text = displayText;
         if (_fullscreenShadowLabel != null) _fullscreenShadowLabel.text = displayText;
